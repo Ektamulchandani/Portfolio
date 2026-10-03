@@ -126,33 +126,52 @@ pre.prompt b{font-weight:600;color:var(--teal)}
   .alist{max-height:none}
 }
 @media (max-width:520px){.tiles,.grid3,.facts2{grid-template-columns:1fr}}
+
+.home{min-height:calc(100vh - 60px);display:flex;flex-direction:column;justify-content:center;gap:40px}
+.hometop{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap}
+.home h1{font-size:clamp(34px,4.6vw,56px);font-weight:700}
+.home .tag{margin:6px 0 0;color:var(--ink-soft);font-size:18px}
+.home .links{display:flex;gap:8px}
+.doors{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+.door{text-align:left;background:#fff;border:1.5px solid var(--line);border-radius:18px;padding:26px 22px;min-height:170px;display:flex;flex-direction:column;justify-content:space-between;cursor:pointer;font-family:inherit;color:var(--ink);transition:border-color .2s,transform .2s}
+.door b{font-family:"Bricolage Grotesque",sans-serif;font-size:22px;line-height:1.2}
+.door span{color:var(--ink-soft);font-size:15px}
+.door:hover{border-color:var(--teal);transform:translateY(-2px)}
+.bar2{display:flex;align-items:center;gap:16px;margin-bottom:14px}
+.bar2 h2{font-size:26px}
+.back{border:1.5px solid var(--ink);background:#fff;color:var(--ink);border-radius:999px;padding:7px 14px;font:600 14px Figtree,sans-serif;cursor:pointer}
+.facts{display:flex;flex-wrap:wrap;gap:6px 26px;margin:0 0 14px;padding:0;list-style:none;color:var(--ink-soft);font-size:14.5px}
+.facts b{color:var(--ink)}
+.agrid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+.agrid .aitem{min-height:120px;display:flex;flex-direction:column;gap:6px}
+@media (max-width:900px){.doors,.agrid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:520px){.doors,.agrid{grid-template-columns:1fr}.home{justify-content:flex-start;padding-top:20px}}
+[hidden]{display:none!important}
 </style>
 </head>
 <body>
 <div class="app">
-<header class="head">
-  <div>
-    <h1>Ekta Mulchandani</h1>
-    <p class="tag">I help HR teams adopt new software and keep using it, and I build AI agents to do that at scale.</p>
+<section id="home" class="home">
+  <div class="hometop">
+    <div>
+      <h1>Ekta Mulchandani</h1>
+      <p class="tag">Customer success and enablement, scaled with AI agents I build.</p>
+    </div>
+    <div class="links">
+      <a class="btn ghost" href="mailto:ektamulchandanima@gmail.com">Email</a>
+      <a class="btn ghost" href="https://www.linkedin.com/in/ekta-mulchandani111/" target="_blank" rel="noopener">LinkedIn</a>
+    </div>
   </div>
-  <div class="links">
-    <a class="btn" href="mailto:ektamulchandanima@gmail.com">Email me</a>
-    <a class="btn ghost" href="https://www.linkedin.com/in/ekta-mulchandani111/" target="_blank" rel="noopener">LinkedIn</a>
-    <a class="btn ghost" href="https://github.com/Ektamulchandani/The-F1-BluePrint" target="_blank" rel="noopener">GitHub</a>
+  <div class="doors" role="list">
+    <button class="door" role="listitem" data-open="p-dash"><b>Account health dashboard</b><span>How I spot risk and decide what to do</span></button>
+    <button class="door" role="listitem" data-open="p-agents"><b>AI agents and prompts</b><span>The agents I built and how they work</span></button>
+    <button class="door" role="listitem" data-open="p-en"><b>Enablement work</b><span>Trainings, launches and webcasts</span></button>
+    <button class="door" role="listitem" data-open="p-about"><b>About me</b><span>Background, results and contact</span></button>
   </div>
-  <ul class="facts">
-    <li><b>38+</b> enterprise accounts at Retensa</li><li><b>13</b> KPIs tracked</li><li><b>90%</b> client retention</li><li><b>10</b> AI agents built</li><li><b>6 months</b> from Associate to CSM</li>
-  </ul>
-</header>
+</section>
 
-<nav class="tabs" role="tablist" aria-label="Portfolio sections">
-  <button class="tab" role="tab" aria-selected="true" aria-controls="p-dash" id="t-dash">Account health dashboard<small>See how I spot and act on risk</small></button>
-  <button class="tab" role="tab" aria-selected="false" aria-controls="p-agents" id="t-agents">AI agents and prompts<small>What each agent does, with its prompt</small></button>
-  <button class="tab" role="tab" aria-selected="false" aria-controls="p-en" id="t-en">Enablement work<small>Trainings, launches, webcasts</small></button>
-  <button class="tab" role="tab" aria-selected="false" aria-controls="p-about" id="t-about">About me<small>Background and contact</small></button>
-</nav>
-
-<section class="panel on" id="p-dash" role="tabpanel" aria-labelledby="t-dash">
+<section class="panel" id="p-dash" aria-label="Account health dashboard">
+  <div class="bar2"><button class="back" type="button" data-home>Back to home</button><h2>Account health dashboard</h2></div>
   <p class="intro">This dashboard runs the same rules as my Outreach Recommender agent. Pick a group, then select an account to see why it was flagged, what I would do and the email I would send. <span class="flag">Sample data. No client information.</span></p>
   <div class="tiles" id="tiles"></div>
   <div class="dash">
@@ -167,14 +186,14 @@ pre.prompt b{font-weight:600;color:var(--teal)}
   </div>
 </section>
 
-<section class="panel" id="p-agents" role="tabpanel" aria-labelledby="t-agents">
-  <div class="agents">
-    <div class="alist" id="alist" role="listbox" aria-label="Agents"></div>
-    <div class="card adetail" id="adetail" aria-live="polite"></div>
-  </div>
+<section class="panel" id="p-agents" aria-label="AI agents and prompts">
+  <div class="bar2"><button class="back" type="button" data-home>Back to home</button><h2>AI agents and prompts</h2></div>
+  <div class="agrid" id="alist" role="list" aria-label="Agents"></div>
+  <div id="awrap" hidden><button class="back" type="button" id="backAgents" style="margin-bottom:12px">Back to all agents</button><div class="card adetail" id="adetail" aria-live="polite"></div></div>
 </section>
 
-<section class="panel" id="p-en" role="tabpanel" aria-labelledby="t-en">
+<section class="panel" id="p-en" aria-label="Enablement work">
+  <div class="bar2"><button class="back" type="button" data-home>Back to home</button><h2>Enablement work</h2></div>
   <p class="intro">I apply evidence-based instructional design and the psychology of behaviour change, turning complex platform features into clear steps that HR, L&amp;D and operations teams adopt and keep using.</p>
   <ul class="formats"><li>Live cohort sessions</li><li>Virtual trainings</li><li>Video platform demos</li><li>Micro-learning</li><li>SOPs</li><li>Facilitator guides</li><li>On-demand LMS resources</li><li>Multi-track curriculum</li></ul>
   <div class="grid3">
@@ -187,7 +206,9 @@ pre.prompt b{font-weight:600;color:var(--teal)}
   </div>
 </section>
 
-<section class="panel" id="p-about" role="tabpanel" aria-labelledby="t-about">
+<section class="panel" id="p-about" aria-label="About me">
+  <div class="bar2"><button class="back" type="button" data-home>Back to home</button><h2>About me</h2></div>
+  <ul class="facts"><li><b>38+</b> enterprise accounts at Retensa</li><li><b>13</b> KPIs tracked</li><li><b>90%</b> client retention</li><li><b>10</b> AI agents built</li><li><b>6 months</b> from Associate to CSM</li></ul>
   <div class="grid3">
     <div class="card"><h3>What I bring</h3><p>Two years running implementation, training and adoption for 38+ enterprise accounts, plus a master's in industrial and organizational psychology that shapes how I design every rollout.</p></div>
     <div class="card"><h3><a href="https://reroot.it.com/" target="_blank" rel="noopener">Reroot</a></h3><p>A free, open-source tool I built with Claude Code that guides international graduate students from program application to employment.</p></div>
@@ -209,11 +230,14 @@ pre.prompt b{font-weight:600;color:var(--teal)}
 </div>
 
 <script>
-// Tabs
-document.querySelectorAll('.tab').forEach(t=>t.addEventListener('click',()=>{
-  document.querySelectorAll('.tab').forEach(x=>x.setAttribute('aria-selected',x===t));
-  document.querySelectorAll('.panel').forEach(p=>p.classList.toggle('on',p.id===t.getAttribute('aria-controls')));
-}));
+// Navigation: home shows doors only; each opens one view
+function show(id){
+  document.getElementById('home').hidden=!!id;
+  document.querySelectorAll('.panel').forEach(p=>p.classList.toggle('on',p.id===id));
+  window.scrollTo(0,0);
+}
+document.querySelectorAll('.door').forEach(d=>d.addEventListener('click',()=>show(d.dataset.open)));
+document.querySelectorAll('[data-home]').forEach(b=>b.addEventListener('click',()=>show(null)));
 
 // Dashboard (sample data) using the Intervention Recommender rules
 const accts=[
@@ -481,9 +505,10 @@ const agents=[
 ];
 let curAgent='loop';
 function alist(){
-  document.getElementById('alist').innerHTML=agents.map(a=>`<button type="button" class="aitem" role="option" data-id="${a.id}" aria-selected="${curAgent===a.id}"><b>${a.n}</b><span>${a.s}</span>${a.p?'<em>Prompt included</em>':''}</button>`).join('');
-  document.querySelectorAll('.aitem').forEach(b=>b.onclick=()=>{curAgent=b.dataset.id;alist();adetail();});
+  document.getElementById('alist').innerHTML=agents.map(a=>`<button type="button" class="aitem" role="listitem" data-id="${a.id}"><b>${a.n}</b><span>${a.s}</span>${a.p?'<em>Prompt included</em>':''}</button>`).join('');
+  document.querySelectorAll('.aitem').forEach(b=>b.onclick=()=>{curAgent=b.dataset.id;document.getElementById('alist').hidden=true;document.getElementById('awrap').hidden=false;adetail();window.scrollTo(0,0);});
 }
+document.getElementById('backAgents').onclick=()=>{document.getElementById('awrap').hidden=true;document.getElementById('alist').hidden=false;};
 function adetail(){
   const a=agents.find(x=>x.id===curAgent), el=document.getElementById('adetail');
   if(a.loop){
@@ -512,7 +537,7 @@ function adetail(){
     el.querySelectorAll('.ptabs button').forEach(x=>x.setAttribute('aria-pressed',x===b));
     const pt=el.querySelector('#ptext'); if(b.dataset.v==='1'){pt.textContent=P.tg1+'\n\nResult: generic scripts, no check for understanding, and steps the product does not have.';} else pt.innerHTML=P.tg;});}
 }
-alist(); adetail();
+alist();
 </script>
 </body>
 </html>
